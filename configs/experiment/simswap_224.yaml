@@ -1,0 +1,51 @@
+# @package _global_
+
+# to execute this experiment run:
+# python train.py experiment=example
+
+defaults:
+  - override /datamodule: simswap_224.yaml
+  - override /model: simswap_224.yaml
+  - override /callbacks: default.yaml
+  - override /logger: tensorboard.yaml
+  - override /trainer: default.yaml
+
+# all parameters below will be merged with parameters from default configurations set above
+# this allows you to overwrite only specified parameters
+
+# name of the run determines folder name in logs
+name: "SimSwap_224"
+ignore_warnings: True
+train: True
+test: False
+
+# path to folder with data
+data_dir: "C:\\Users\\petrush\\Downloads\\SimSwap\\content\\TrainingData\\vggface2_crop_arcfacealign_224"
+
+seed: 12345
+
+trainer:
+  min_epochs: 10
+  max_epochs: 100
+  gpus: 1
+  #gradient_clip_val: 0.5
+
+model:
+  opt_gen:
+    lr: 1e-3
+    beta1: 0.0
+  opt_disc:
+    lr: 1e-3
+    beta1: 0.0
+  loss:
+    fm_loss_weight: 10.0
+    id_loss_weight: 30.0
+    rec_loss_weight: 10.0
+    gp_loss_weight: 10.0
+
+datamodule:
+  batch_size: 16
+
+#logger:
+#  tensorboard:
+#    tags: ["simswap_224", "${name}"]

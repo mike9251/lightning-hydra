@@ -1,0 +1,3 @@
+_target_: src.models.simswap_module.SimSwapLitModule
+
+arcnet_path: "C:\\Users\\petrush\\Downloads\\SimSwap\\arcface_model\\arcface_net.jit"
